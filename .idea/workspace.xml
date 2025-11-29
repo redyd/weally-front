@@ -4,12 +4,18 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="35b40ad1-3cb0-4852-862a-f125965c8825" name="Changes" comment="tabs">
-      <change afterPath="$PROJECT_DIR$/constants/Colors.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/constants/Fonts.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/constants/Spacing.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/constants/index.ts" afterDir="false" />
+    <list default="true" id="35b40ad1-3cb0-4852-862a-f125965c8825" name="Changes" comment="fonts">
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Manrope-Bold.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/fonts/Manrope-Regular.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/_layout.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/(tabs)/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/(tabs)/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/_layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/_layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Colors.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Colors.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/constants/Fonts.ts" beforeDir="false" afterPath="$PROJECT_DIR$/constants/Fonts.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +81,7 @@
     "git-widget-placeholder": "setup",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/timeo/Desktop/dev/weally/weally-front/app/(tabs)",
+    "last_opened_file_path": "C:/Users/timeo/Desktop/dev/weally/weally-front/assets/fonts",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -89,11 +95,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front\assets\fonts" />
       <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front\app\(tabs)" />
       <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front" />
       <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front\components" />
       <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front\constants" />
-      <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front\hooks" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\timeo\Desktop\dev\weally\weally-front" />
@@ -119,7 +125,7 @@
       <workItem from="1763759770744" duration="951000" />
       <workItem from="1763808035192" duration="2510000" />
       <workItem from="1764185024105" duration="47000" />
-      <workItem from="1764422793202" duration="1957000" />
+      <workItem from="1764422793202" duration="6650000" />
     </task>
     <task id="LOCAL-00001" summary="reset">
       <option name="closed" value="true" />
@@ -137,7 +143,15 @@
       <option name="project" value="LOCAL" />
       <updated>1764423811514</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="setup consts files">
+      <option name="closed" value="true" />
+      <created>1764424829720</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1764424829720</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -146,6 +160,20 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="reset" />
     <MESSAGE value="tabs" />
-    <option name="LAST_COMMIT_MESSAGE" value="tabs" />
+    <MESSAGE value="setup consts files" />
+    <MESSAGE value="fonts" />
+    <option name="LAST_COMMIT_MESSAGE" value="fonts" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/app/_layout.tsx</url>
+          <line>30</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

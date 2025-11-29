@@ -1,10 +1,10 @@
-import { Colors } from "@/constants";
+import { Colors, TextStyles } from "@/constants";
 import { Text, View, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
     return (
         <View style={styles.container}>
-            <Text style={styles.text}>Home Screen</Text>
+            <Text style={styles.mainTitle}>Aujourd&#39;hui</Text>
         </View>
     );
 }
@@ -12,12 +12,11 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
         backgroundColor: Colors.background,
     },
-    text: {
-        fontFamily: 'Sans ms',
-        fontSize: 20
-    },
+    mainTitle: {
+        color: Colors.text,
+        textAlign: "left",
+        ...TextStyles.mainTitle,
+    }
 });
