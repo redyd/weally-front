@@ -1,3 +1,4 @@
+import { Colors } from "@/constants";
 import { Text, View, StyleSheet } from 'react-native';
 
 export default function HomeScreen() {
@@ -9,6 +10,14 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-    text: { fontFamily: 'Sans ms', fontSize: 20 },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: Colors.background,
+    },
+    text: {
+        fontFamily: 'Sans ms',
+        fontSize: 20
+    },
 });
