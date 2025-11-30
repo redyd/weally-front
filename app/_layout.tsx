@@ -12,6 +12,7 @@ export default function RootLayout() {
     const [loaded, error] = useFonts({
         Manrope: require('../assets/fonts/Manrope-Regular.ttf'),
         ManropeBold: require('../assets/fonts/Manrope-Bold.ttf'),
+        ManropeExtraBold: require('../assets/fonts/Manrope-ExtraBold.ttf'),
     });
 
     useEffect(() => {

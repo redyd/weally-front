@@ -1,7 +1,10 @@
+import {Colors} from "@/constants/Colors";
+
 export const Fonts = {
     // Family
     regular: 'Manrope',
     bold: 'ManropeBold',
+    extrabold: 'ManropeExtraBold',
 
     // Size
     sizes: {
@@ -16,15 +19,6 @@ export const Fonts = {
         display: 40,
     },
 
-    // Weights
-    weights: {
-        light: '300' as const,
-        regular: '400' as const,
-        medium: '500' as const,
-        semiBold: '600' as const,
-        bold: '700' as const,
-    },
-
     // Line heights
     lineHeights: {
         tight: 1.2,
@@ -37,8 +31,21 @@ export const Fonts = {
 export const TextStyles = {
     mainTitle: {
         fontSize: Fonts.sizes.heading,
-        fontWeight: Fonts.weights.bold,
         lineHeight: Fonts.sizes.heading * Fonts.lineHeights.tight,
-        fontFamily: Fonts.regular,
+        fontFamily: Fonts.extrabold,
+        color: Colors.primary
     },
+    subTitle: {
+        fontSize: Fonts.sizes.xxl,
+        lineHeight: Fonts.sizes.xxl * Fonts.lineHeights.tight,
+        fontFamily: Fonts.regular,
+        color: Colors.textSecondary,
+    },
+    important: {
+        fontSize: Fonts.sizes.xl,
+
+    },
+    descriptive: {
+
+    }
 };
