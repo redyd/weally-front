@@ -19,6 +19,7 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
             <View style={styles.sidebar}>
                 <SidebarItem label="Home" route="/"/>
                 <SidebarItem label="Planning" route="/planning"/>
+                <SidebarItem label="Mon compte" route="/account"/>
             </View>
             <View style={styles.content}>
                 {children}

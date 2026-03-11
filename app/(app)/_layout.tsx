@@ -41,6 +41,19 @@ export default function TabLayout() {
                     ),
                 }}
             />
+            <Tabs.Screen
+                name="account"
+                options={{
+                    title: "Mon compte",
+                    tabBarIcon: ({color, focused}) => (
+                        <Ionicons
+                            name={focused ? "person" : "person-outline"}
+                            color={color}
+                            size={24}
+                        />
+                    ),
+                }}
+            />
         </Tabs>
     );
 }
