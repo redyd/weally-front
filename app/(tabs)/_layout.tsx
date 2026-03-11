@@ -1,17 +1,22 @@
 import {Tabs} from "expo-router";
+import {useIsLargeScreen} from "@/hooks/useIsLargeScreen";
 import {Colors} from "@/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
+    const isLargeScreen = useIsLargeScreen();
+
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors.primary,
+                // hide tab bar if large screen
+                tabBarStyle: isLargeScreen ? {display: "none"} : undefined,
             }}
         >
             <Tabs.Screen
-                name="(shared)/index"
+                name="index"
                 options={{
                     title: "Home",
                     tabBarIcon: ({color, focused}) => (
@@ -23,9 +28,8 @@ export default function TabLayout() {
                     ),
                 }}
             />
-
             <Tabs.Screen
-                name="(shared)/planning"
+                name="planning"
                 options={{
                     title: "Planning",
                     tabBarIcon: ({color, focused}) => (
@@ -37,8 +41,6 @@ export default function TabLayout() {
                     ),
                 }}
             />
-            <Tabs.Screen name="(large)" options={{href: null}}/>
-            <Tabs.Screen name="(small)" options={{href: null}}/>
         </Tabs>
     );
 }
