@@ -1,13 +1,16 @@
 import {Text, StyleSheet} from "react-native";
 import {Colors} from "@/constants/theme";
+import {Link} from "expo-router";
 import {SafeAreaView} from "react-native-safe-area-context";
 
-export default function Planning() {
+export default function Index() {
+
     return (
         <SafeAreaView style={styles.container}>
-            <Text>zoihjfeij</Text>
+            <Text>Edit app/index.tsx to edit this screen.</Text>
+            <Link href="/(shared)/planning">Go to planning</Link>
         </SafeAreaView>
-    )
+    );
 }
 
 const styles = StyleSheet.create({

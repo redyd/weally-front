@@ -1,9 +1,13 @@
-import {Stack} from "expo-router";
+import TabsLayout from "@/app/(small)/_layout";
+import SidebarLayout from "@/app/(large)/_layout";
+import {useIsLargeScreen} from "@/hooks/useIsLargeScreen";
 
 export default function RootLayout() {
-    return (
-        <Stack>
-            <Stack.Screen name="(tabs)" options={{headerShown: false}}></Stack.Screen>
-        </Stack>
-    );
+    const isLargeScreen = useIsLargeScreen();
+
+    if (isLargeScreen) {
+        return <SidebarLayout/>;
+    }
+
+    return <TabsLayout/>;
 }
