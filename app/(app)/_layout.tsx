@@ -1,4 +1,4 @@
-import {Tabs} from "expo-router";
+import {Slot, Tabs} from "expo-router";
 import {useIsLargeScreen} from "@/hooks/useIsLargeScreen";
 import {Colors} from "@/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -6,13 +6,15 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 export default function TabLayout() {
     const isLargeScreen = useIsLargeScreen();
 
+    if (isLargeScreen) {
+        return <Slot/>
+    }
+
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors.primary,
-                // hide tab bar if large screen
-                tabBarStyle: isLargeScreen ? {display: "none"} : undefined,
             }}
         >
             <Tabs.Screen
