@@ -19,7 +19,7 @@ export default function RootLayout() {
         }
     }, [session, isPending, segments]);
 
-    if (isPending) return null; // évite un flash de redirection
+    if (isPending) return null;
 
     return <Slot />;
 }

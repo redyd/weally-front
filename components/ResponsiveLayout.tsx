@@ -19,11 +19,18 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
         <View style={styles.container}>
             <View style={styles.sidebar}>
                 <View>
-                    <SidebarItem label="Home" route="/" icon="home-sharp"/>
-                    <SidebarItem label="Planning" route="/planning" icon="calendar-clear"/>
+                    <SidebarItem label="Home" route="/">
+                        <Ionicons name="home-sharp" size={15} color="#000"/>
+                    </SidebarItem>
+                    <SidebarItem label="Planning" route="/planning">
+                        <Ionicons name="calendar-clear" size={15} color="#000"/>
+
+                    </SidebarItem>
                 </View>
                 <View style={styles.bottomItem}>
-                    <SidebarItem label="Mon compte" route="/account" icon="person"/>
+                    <SidebarItem label="Mon compte" route="/account">
+                        <Ionicons name="person" size={15} color="#000"/>
+                    </SidebarItem>
                 </View>
             </View>
             <View style={styles.content}>
@@ -33,7 +40,7 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
     );
 }
 
-function SidebarItem({label, route, icon}: { label: string; route: Href, icon: string }) {
+function SidebarItem({label, route, children}: { label: string; route: Href, children: React.ReactNode }) {
     const pathname = usePathname();
     const isActive = pathname === route;
 
@@ -46,7 +53,7 @@ function SidebarItem({label, route, icon}: { label: string; route: Href, icon: s
                 isActive && styles.itemActive,
             ]}
         >
-            <Ionicons name={icon} size={15} color="#000"/>
+            {children}
             <Text style={styles.itemText}>{label}</Text>
         </Pressable>
     );
