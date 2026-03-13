@@ -1,6 +1,6 @@
 import {Slot, Tabs} from "expo-router";
 import {useIsLargeScreen} from "@/hooks/useIsLargeScreen";
-import {Colors} from "@/constants/theme";
+import {Colors, Fonts} from "@/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
 
 export default function TabLayout() {
@@ -15,6 +15,10 @@ export default function TabLayout() {
             screenOptions={{
                 headerShown: false,
                 tabBarActiveTintColor: Colors.secondary,
+                tabBarLabelStyle: {
+                    fontSize: 10,
+                    fontFamily: Fonts.medium,
+                }
             }}
         >
             <Tabs.Screen

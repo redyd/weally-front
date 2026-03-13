@@ -13,8 +13,6 @@ export default function Account() {
 
     if (isPending) return <Text>Chargement...</Text>;
 
-    console.log(session?.user); // ← dans les logs Expo
-
     return (
         <ResponsiveLayout>
             <SafeAreaView>

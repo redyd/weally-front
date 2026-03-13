@@ -1,9 +1,26 @@
-import { useEffect } from 'react';
-import { Slot, useRouter, useSegments } from 'expo-router';
-import { authClient } from '@/lib/auth-client';
+import {useEffect} from 'react';
+import {Slot, useRouter, useSegments} from 'expo-router';
+import {authClient} from '@/lib/auth-client';
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
+import {
+    useFonts,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+} from '@expo-google-fonts/poppins';
 
 export default function RootLayout() {
-    const { data: session, isPending } = authClient.useSession();
+    const queryClient = new QueryClient();
+
+    const [fontsLoaded] = useFonts({
+        Poppins_400Regular,
+        Poppins_500Medium,
+        Poppins_600SemiBold,
+        Poppins_700Bold,
+    });
+
+    const {data: session, isPending} = authClient.useSession();
     const router = useRouter();
     const segments = useSegments();
 
@@ -17,9 +34,13 @@ export default function RootLayout() {
         } else if (session?.user && inAuthGroup) {
             router.replace('/(app)');
         }
-    }, [session, isPending, segments]);
+    }, [session, isPending, segments, router]);
 
     if (isPending) return null;
 
-    return <Slot />;
+    return (
+        <QueryClientProvider client={queryClient}>
+            <Slot/>
+        </QueryClientProvider>
+    );
 }
