@@ -12,7 +12,11 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
     const isLargeScreen = useIsLargeScreen();
 
     if (!isLargeScreen) {
-        return <>{children}</>;
+        return (
+            <View style={styles.content}>
+                {children}
+            </View>
+        );
     }
 
     return (
@@ -24,7 +28,6 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
                     </SidebarItem>
                     <SidebarItem label="Planning" route="/planning">
                         <Ionicons name="calendar-clear" size={15} color="#000"/>
-
                     </SidebarItem>
                 </View>
                 <View style={styles.bottomItem}>
