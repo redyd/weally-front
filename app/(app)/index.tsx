@@ -1,6 +1,6 @@
-import { ResponsiveLayout } from "@/components/ResponsiveLayout";
-import { Text, StyleSheet, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import {ResponsiveLayout} from "@/components/ResponsiveLayout";
+import {Text, StyleSheet, View, ActivityIndicator} from "react-native";
+import {SafeAreaView} from "react-native-safe-area-context";
 import {Colors, Fonts} from "@/constants/theme";
 import {useMe} from "@/hooks/useMe";
 import {useFamilyMeals} from "@/hooks/useFamilyMeals";
@@ -8,12 +8,12 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import Avatar from "@/components/Avatar";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
+import DailyMealPreview from "@/components/DailyMealPreview";
 
 export default function Index() {
-    const { data: me, isLoading: meLoading } = useMe();
-    const { data: familyMeals, isLoading: familyLoading } = useFamilyMeals(me?.familyId);
+    const {data: me, isLoading: meLoading} = useMe();
 
-    if (meLoading || familyLoading) return <Text>Chargement...</Text>;
+    if (meLoading) return <ActivityIndicator size="large" color={Colors.darkOutline}/>;
 
     const familyText = !me?.family ? "Sans famille" : `Famille ${me?.family?.name}`;
 
@@ -33,7 +33,7 @@ export default function Index() {
                     <GlobalSearchBar/>
                 </View>
 
-
+                <DailyMealPreview/>
             </SafeAreaView>
         </ResponsiveLayout>
     );
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    header : {
+    header: {
         display: "flex",
         flexDirection: "column",
         gap: 20,
