@@ -1,4 +1,4 @@
-import {Tabs} from "expo-router";
+import {Slot, Tabs} from "expo-router";
 import {useIsLargeScreen} from "@/hooks/useIsLargeScreen";
 import {Colors} from "@/constants/theme";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -6,13 +6,15 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 export default function TabLayout() {
     const isLargeScreen = useIsLargeScreen();
 
+    if (isLargeScreen) {
+        return <Slot/>
+    }
+
     return (
         <Tabs
             screenOptions={{
                 headerShown: false,
-                tabBarActiveTintColor: Colors.primary,
-                // hide tab bar if large screen
-                tabBarStyle: isLargeScreen ? {display: "none"} : undefined,
+                tabBarActiveTintColor: Colors.secondary,
             }}
         >
             <Tabs.Screen
@@ -35,6 +37,19 @@ export default function TabLayout() {
                     tabBarIcon: ({color, focused}) => (
                         <Ionicons
                             name={focused ? "calendar-clear" : "calendar-clear-outline"}
+                            color={color}
+                            size={24}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="account"
+                options={{
+                    title: "Mon compte",
+                    tabBarIcon: ({color, focused}) => (
+                        <Ionicons
+                            name={focused ? "person" : "person-outline"}
                             color={color}
                             size={24}
                         />
