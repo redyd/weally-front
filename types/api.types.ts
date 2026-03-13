@@ -1,7 +1,7 @@
 export type Meal = {
     id: string;
     label: string;
-    familyId: string;
+    description: string;
 };
 
 export type FamilyWithMeals = {
@@ -32,3 +32,12 @@ export type Me = {
     familyId: string | null;
     family: Family | null;
 };
+
+export type MealType = 'BREAKFAST' | 'LUNCH' | 'DINNER' | 'SNACK';
+
+export type PlannedMeal = {
+    id: string;
+    type: MealType;
+    date: string;
+    meal: Meal;
+}

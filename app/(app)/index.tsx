@@ -3,17 +3,18 @@ import {Text, StyleSheet, View, ActivityIndicator} from "react-native";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Colors, Fonts} from "@/constants/theme";
 import {useMe} from "@/hooks/useMe";
-import {useFamilyMeals} from "@/hooks/useFamilyMeals";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import Avatar from "@/components/Avatar";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
 import DailyMealPreview from "@/components/DailyMealPreview";
+import {useNextDaysPlanning} from "@/hooks/useNextDaysPlanning";
 
 export default function Index() {
     const {data: me, isLoading: meLoading} = useMe();
+    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.familyId);
 
-    if (meLoading) return <ActivityIndicator size="large" color={Colors.darkOutline}/>;
+    if (meLoading || planningPreviewLoading) return <ActivityIndicator size="large" color={Colors.darkOutline}/>;
 
     const familyText = !me?.family ? "Sans famille" : `Famille ${me?.family?.name}`;
 
@@ -33,7 +34,7 @@ export default function Index() {
                     <GlobalSearchBar/>
                 </View>
 
-                <DailyMealPreview/>
+                <DailyMealPreview planning={planningPreview}/>
             </SafeAreaView>
         </ResponsiveLayout>
     );
