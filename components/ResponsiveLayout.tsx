@@ -66,9 +66,9 @@ const styles = StyleSheet.create({
     container: {flex: 1, flexDirection: "row"},
     sidebar: {
         width: 220,
-        backgroundColor: Colors.lightOutline,
+        backgroundColor: Colors.light_outline,
         borderRightWidth: 1,
-        borderRightColor: Colors.darkOutline,
+        borderRightColor: Colors.dark_outline,
         padding: 20,
     },
     content: {
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.secondary
     },
     itemText: {
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         fontSize: 16
     },
     bottomItem: {

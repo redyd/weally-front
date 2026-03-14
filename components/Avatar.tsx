@@ -13,7 +13,7 @@ export default function Avatar({image}: {image: string | null | undefined}) {
                 height: SIZE,
                 borderRadius: SIZE / 2,
                 borderWidth: 2,
-                borderColor: Colors.darkOutline,
+                borderColor: Colors.dark_outline,
             }}
         />
     );

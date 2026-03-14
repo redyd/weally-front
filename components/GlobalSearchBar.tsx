@@ -8,11 +8,11 @@ export default function GlobalSearchBar() {
 
     return (
         <View style={styles.container}>
-            <Ionicons name="search-outline" size={18} color={Colors.darkOutline} />
+            <Ionicons name="search-outline" size={18} color={Colors.dark_outline} />
             <TextInput
                 style={styles.input}
                 placeholder="Rechercher..."
-                placeholderTextColor={Colors.darkOutline}
+                placeholderTextColor={Colors.dark_outline}
                 value={search}
                 onChangeText={setSearch}
                 returnKeyType="search"
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     input: {
         flex: 1,
         fontSize: 15,
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         fontFamily: Fonts.regular,
     },
 });

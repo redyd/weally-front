@@ -148,7 +148,7 @@ const styles = StyleSheet.create({
         width: 380,
         height: 380,
         borderRadius: 190,
-        backgroundColor: Colors.lightOutline,
+        backgroundColor: Colors.light_outline,
         opacity: 0.5,
         top: -80,
         right: -120,
@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     title: {
         fontSize: 22,
         fontFamily: Fonts?.serif,
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         textAlign: "center",
         marginBottom: 14,
         fontWeight: "700",
@@ -205,7 +205,7 @@ const styles = StyleSheet.create({
     subtitle: {
         fontSize: 15,
         fontFamily: Fonts?.sans,
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         textAlign: "center",
         opacity: 0.65,
         lineHeight: 23,
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
         elevation: 6,
     },
     buttonText: {
-        color: Colors.lightOutline,
+        color: Colors.light_outline,
         fontSize: 15,
         fontWeight: "700",
         fontFamily: Fonts?.sans,

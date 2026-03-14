@@ -1,10 +1,12 @@
 export const Colors = {
     primary: '#E53935',
+    primary_light: '#EA615D',
     secondary: '#43A047',
     secondary_light: '#C7E3C8',
     accent: '#FFF3E0',
-    darkOutline: '#4E342E',
-    lightOutline: '#FFFFFF',
+    dark_outline: '#4E342E',
+    light_outline: '#FFFFFF',
+    light_outline_gray: '#F5F5F5',
 };
 
 export const Fonts = {

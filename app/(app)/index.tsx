@@ -7,14 +7,18 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
 import Avatar from "@/components/Avatar";
 import GlobalSearchBar from "@/components/GlobalSearchBar";
-import DailyMealPreview from "@/components/DailyMealPreview";
 import {useNextDaysPlanning} from "@/hooks/useNextDaysPlanning";
+import DailyMealPreview from "@/components/DailyMealPreview";
+
+const DAYS_PREVIEW: number = 5;
 
 export default function Index() {
     const {data: me, isLoading: meLoading} = useMe();
-    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.familyId);
+    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.familyId, DAYS_PREVIEW);
 
-    if (meLoading || planningPreviewLoading) return <ActivityIndicator size="large" color={Colors.darkOutline}/>;
+    if (meLoading || planningPreviewLoading) {
+        return <ActivityIndicator size="large" color={Colors.dark_outline}/>;
+    }
 
     const familyText = !me?.family ? "Sans famille" : `Famille ${me?.family?.name}`;
 
@@ -28,13 +32,13 @@ export default function Index() {
                         <Text style={styles.headerSmallText}>{familyText}</Text>
                     </View>
                     <View style={styles.inline}>
-                        <Ionicons name="notifications-outline" size={25} color={Colors.darkOutline}/>
+                        <Ionicons name="notifications-outline" size={25} color={Colors.dark_outline}/>
                         <Avatar image={me?.image}/>
                     </View>
                     <GlobalSearchBar/>
                 </View>
 
-                <DailyMealPreview planning={planningPreview}/>
+                <DailyMealPreview planning={planningPreview} days={DAYS_PREVIEW}/>
             </SafeAreaView>
         </ResponsiveLayout>
     );
@@ -43,6 +47,7 @@ export default function Index() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        gap:10
     },
     header: {
         display: "flex",
@@ -57,13 +62,13 @@ const styles = StyleSheet.create({
     },
     headerSmallText: {
         fontSize: 14,
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         fontWeight: "400",
         fontFamily: Fonts.regular,
     },
     headerMediumText: {
         fontSize: 22,
-        color: Colors.darkOutline,
+        color: Colors.dark_outline,
         fontFamily: Fonts.bold,
     }
 });

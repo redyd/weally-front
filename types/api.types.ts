@@ -35,9 +35,12 @@ export type Me = {
 
 export type MealType = 'BREAKFAST' | 'LUNCH' | 'DINNER' | 'SNACK';
 
-export type PlannedMeal = {
-    id: string;
-    type: MealType;
-    date: string;
-    meal: Meal;
+export type MealsPerDay = {
+    day: Date;
+    meals: {
+        id: string;
+        label: string;
+        description: string | null;
+        type: MealType;
+    }[];
 }
