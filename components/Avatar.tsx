@@ -1,28 +1,29 @@
 import {Image, Text, View, StyleSheet} from 'react-native';
 import {Colors, Fonts} from "@/constants/theme";
-import {authClient} from "@/lib/auth-client";
 
-export default function Avatar({size = 38}: { size?: number }) {
-    const {data: session, isPending} = authClient.useSession();
+interface AvatarProps {
+    size: number;
+    image: string | null | undefined;
+    name: string | null | undefined;
+}
 
-    if (isPending) return null;
-
-    const initials = session?.user?.name
+export default function Avatar(props: AvatarProps) {
+    const initials = props?.name
         ?.split(' ')
         .map((n: string) => n[0])
         .join('')
         .toUpperCase() ?? '?';
 
     const avatarStyle = {
-        width: size,
-        height: size,
-        borderRadius: size / 2,
+        width: props.size,
+        height: props.size,
+        borderRadius: props.size / 2,
     };
 
-    if (session?.user?.image) {
+    if (props.image) {
         return (
             <Image
-                source={{uri: session.user.image}}
+                source={{uri: props.image}}
                 style={[avatarStyle, styles.image]}
             />
         );
@@ -30,7 +31,7 @@ export default function Avatar({size = 38}: { size?: number }) {
 
     return (
         <View style={[styles.avatar, avatarStyle]}>
-            <Text style={[styles.avatarText, {fontSize: size * 0.36}]}>
+            <Text style={[styles.avatarText, {fontSize: props.size * 0.36}]}>
                 {initials}
             </Text>
         </View>

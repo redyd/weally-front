@@ -97,12 +97,12 @@ export default function NotFound() {
 
                 {/* Message principal */}
                 <Animated.Text style={[styles.title, { opacity: fadeSubtitle }]}>
-                    Ce plat n'est pas au menu
+                    Ce plat n&#39;est pas au menu
                 </Animated.Text>
 
                 <Animated.Text style={[styles.subtitle, { opacity: fadeSubtitle }]}>
                     La page que vous cherchez semble avoir disparu de notre cuisine.
-                    Revenez à l'accueil pour retrouver vos plats.
+                    Revenez à l&#39;accueil pour retrouver vos plats.
                 </Animated.Text>
 
                 {/* Bouton retour */}
@@ -117,7 +117,7 @@ export default function NotFound() {
                         onPressOut={handlePressOut}
                         style={styles.button}
                     >
-                        <Text style={styles.buttonText}>Retour à l'accueil</Text>
+                        <Text style={styles.buttonText}>Retour à l&#39;accueil</Text>
                     </Pressable>
                 </Animated.View>
 
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     // 404
     errorCode: {
         fontSize: 120,
-        fontFamily: Fonts?.serif,
+        fontFamily: Fonts.semiBold,
         color: Colors.primary,
         lineHeight: 120,
         letterSpacing: -4,
@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
     // Titre
     title: {
         fontSize: 22,
-        fontFamily: Fonts?.serif,
+        fontFamily: Fonts.semiBold,
         color: Colors.dark_outline,
         textAlign: "center",
         marginBottom: 14,
@@ -204,7 +204,7 @@ const styles = StyleSheet.create({
     // Sous-titre
     subtitle: {
         fontSize: 15,
-        fontFamily: Fonts?.sans,
+        fontFamily: Fonts.medium,
         color: Colors.dark_outline,
         textAlign: "center",
         opacity: 0.65,
@@ -229,7 +229,7 @@ const styles = StyleSheet.create({
         color: Colors.light_outline,
         fontSize: 15,
         fontWeight: "700",
-        fontFamily: Fonts?.sans,
+        fontFamily: Fonts.medium,
         letterSpacing: 0.3,
     },
 

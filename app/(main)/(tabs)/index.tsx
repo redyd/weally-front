@@ -14,7 +14,7 @@ const DAYS_PREVIEW: number = 5;
 
 export default function Index() {
     const {data: me, isLoading: meLoading} = useMe();
-    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.familyId, DAYS_PREVIEW);
+    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.family?.id, DAYS_PREVIEW);
 
     if (meLoading || planningPreviewLoading) {
         return <ActivityIndicator size="large" color={Colors.dark_outline}/>;
@@ -33,7 +33,7 @@ export default function Index() {
                     </View>
                     <View style={styles.inline}>
                         <Ionicons name="notifications-outline" size={25} color={Colors.dark_outline}/>
-                        <Avatar/>
+                        <Avatar size={38} image={me?.image} name={me?.name}/>
                     </View>
                     <GlobalSearchBar/>
                 </View>

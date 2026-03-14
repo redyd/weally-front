@@ -8,7 +8,7 @@ import {MaterialIcons} from "@expo/vector-icons";
 import {router} from "expo-router";
 
 export default function Account() {
-    const {data: session, isPending} = authClient.useSession();
+    const {data: me, isPending} = authClient.useSession();
 
     async function handleSignOut() {
         await authClient.signOut();
@@ -26,9 +26,9 @@ export default function Account() {
 
                 {/* Avatar + infos */}
                 <View style={styles.profileSection}>
-                    <Avatar size={72}/>
-                    <Text style={styles.name}>{session?.user?.name}</Text>
-                    <Text style={styles.email}>{session?.user?.email}</Text>
+                    <Avatar size={72} image={me?.user.image} name={me?.user.name} />
+                    <Text style={styles.name}>{me?.user?.name}</Text>
+                    <Text style={styles.email}>{me?.user?.email}</Text>
                 </View>
 
                 {/* Actions */}
