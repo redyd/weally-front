@@ -1,5 +1,5 @@
 import {useEffect} from 'react';
-import {Slot, useRouter, useSegments} from 'expo-router';
+import {Stack, useRouter, useSegments} from 'expo-router';
 import {authClient} from '@/lib/auth-client';
 import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 import {
@@ -32,7 +32,7 @@ export default function RootLayout() {
         if (!session?.user && !inAuthGroup) {
             router.replace('/(auth)/sign-in');
         } else if (session?.user && inAuthGroup) {
-            router.replace('/(app)');
+            router.replace('/(main)/(tabs)');
         }
     }, [session, isPending, segments, router]);
 
@@ -40,7 +40,7 @@ export default function RootLayout() {
 
     return (
         <QueryClientProvider client={queryClient}>
-            <Slot/>
+            <Stack screenOptions={{ headerShown: false }} />
         </QueryClientProvider>
     );
 }

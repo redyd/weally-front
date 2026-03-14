@@ -5,12 +5,17 @@ import {Pressable, Text, View, StyleSheet} from 'react-native';
 import {authClient} from '@/lib/auth-client';
 import {Colors, Fonts} from "@/constants/theme";
 import {MaterialIcons} from "@expo/vector-icons";
+import {router} from "expo-router";
 
 export default function Account() {
     const {data: session, isPending} = authClient.useSession();
 
     async function handleSignOut() {
         await authClient.signOut();
+    }
+
+    const goToFamily = function () {
+        router.push("/(main)/(family)");
     }
 
     if (isPending) return null;
@@ -36,7 +41,7 @@ export default function Account() {
 
                     <View style={styles.separator}/>
 
-                    <Pressable style={styles.actionRow} onPress={() => console.log('family')}>
+                    <Pressable style={styles.actionRow} onPress={goToFamily}>
                         <MaterialIcons name="group" size={20} color={Colors.primary}/>
                         <Text style={styles.actionText}>Ma famille</Text>
                         <MaterialIcons name="chevron-right" size={20} color={Colors.dark_outline} style={styles.chevron}/>
