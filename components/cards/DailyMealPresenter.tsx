@@ -34,7 +34,9 @@ export default function DailyMealPresenter(props: DailyMealPresenterProps) {
                             <Text style={styles.subCardSubTitle}>{resolveName(meal.type)}</Text>
                         </View>
                     </View>
-                    <Text style={styles.subCardSubTitle}>{meal.description}</Text>
+                    {meal.description && (
+                        <Text style={styles.subCardSubTitle}>{meal.description}</Text>
+                    )}
                 </TouchableOpacity>
             ))}
         </View>
@@ -49,7 +51,7 @@ const styles = StyleSheet.create({
         gap: 10
     },
     title: {
-        fontFamily: Fonts.medium,
+        fontFamily: Fonts.semiBold,
         fontSize: 18,
         color: Colors.light_outline
     },

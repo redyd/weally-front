@@ -33,7 +33,7 @@ export default function Index() {
                     </View>
                     <View style={styles.inline}>
                         <Ionicons name="notifications-outline" size={25} color={Colors.dark_outline}/>
-                        <Avatar image={me?.image}/>
+                        <Avatar/>
                     </View>
                     <GlobalSearchBar/>
                 </View>
