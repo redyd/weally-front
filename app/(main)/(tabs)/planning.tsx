@@ -1,4 +1,4 @@
-import { ResponsiveLayout } from "@/components/ResponsiveLayout";
+import { ResponsiveLayout } from "@/components/layouts/ResponsiveLayout";
 import { Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 

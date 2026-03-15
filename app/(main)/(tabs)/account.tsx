@@ -1,4 +1,4 @@
-import {ResponsiveLayout} from "@/components/ResponsiveLayout";
+import {ResponsiveLayout} from "@/components/layouts/ResponsiveLayout";
 import Avatar from "@/components/Avatar";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {Pressable, Text, View, StyleSheet} from 'react-native';

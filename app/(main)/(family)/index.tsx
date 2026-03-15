@@ -6,7 +6,7 @@ import {
     TouchableOpacity,
     ScrollView,
 } from "react-native";
-import { ResponsiveLayout } from "@/components/ResponsiveLayout";
+import { ResponsiveLayout } from "@/components/layouts/ResponsiveLayout";
 import { Colors, Fonts } from "@/constants/theme";
 import { useMe } from "@/hooks/useMe";
 import Avatar from "@/components/Avatar";
