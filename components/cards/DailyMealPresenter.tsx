@@ -1,7 +1,7 @@
 import {MealsPerDay} from "@/types/api.types";
 import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 import {Colors, Fonts} from "@/constants/theme";
-import MealIcon from "@/components/MealIcon";
+import MealIcon from "@/components/icons/MealIcon";
 import {resolveName} from "@/lib/helper.func";
 
 interface DailyMealPresenterProps {

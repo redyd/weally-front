@@ -5,10 +5,10 @@ import {Colors, Fonts} from "@/constants/theme";
 import {useMe} from "@/hooks/useMe";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import React from "react";
-import Avatar from "@/components/Avatar";
-import GlobalSearchBar from "@/components/GlobalSearchBar";
+import Avatar from "@/components/icons/Avatar";
+import GlobalSearchBar from "@/components/page-components/GlobalSearchBar";
 import {useNextDaysPlanning} from "@/hooks/useNextDaysPlanning";
-import DailyMealPreview from "@/components/DailyMealPreview";
+import DailyMealPreview from "@/components/page-components/DailyMealPreview";
 
 const DAYS_PREVIEW: number = 5;
 

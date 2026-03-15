@@ -9,13 +9,16 @@ import {
 import { ResponsiveLayout } from "@/components/layouts/ResponsiveLayout";
 import { Colors, Fonts } from "@/constants/theme";
 import { useMe } from "@/hooks/useMe";
-import Avatar from "@/components/Avatar";
+import Avatar from "@/components/icons/Avatar";
 import {useInvitationCode} from "@/hooks/useInvitationCode";
 import {useState} from "react";
 import InvitationModal from "@/components/modals/InvitationModal";
 import ConfirmationModal from "@/components/modals/ConfirmationModal";
 import {useLeaveFamily} from "@/hooks/useLeaveFamily";
 import {useQueryClient} from "@tanstack/react-query";
+import {FontAwesome} from "@expo/vector-icons";
+import AlertButton from "@/components/buttons/AlertButton";
+import NoFamily from "@/components/page-components/NoFamily";
 
 export default function FamilyHome() {
     const queryClient = useQueryClient();
@@ -30,11 +33,9 @@ export default function FamilyHome() {
     // leave family modal
     const [leaveFamilyModalVisible, setLeaveFamilyModalVisible] = useState(false);
     const { mutate: leaveFamily, isPending: isLeavePending, reset: resetLeave } = useLeaveFamily({
-        onSuccess: (data) => {
+        onSuccess: () => {
             console.log("Confirm leave family")
             setLeaveFamilyModalVisible(false)
-
-            // invalidate user data to refresh UI
             queryClient.invalidateQueries({ queryKey: ['me'] })
         },
         onError: (error) => {
@@ -42,7 +43,6 @@ export default function FamilyHome() {
         }
     });
 
-    // invitation function
     const handleOpenInvitation = () => {
         resetInvitation();
         setInvitationModalVisible(true);
@@ -53,7 +53,6 @@ export default function FamilyHome() {
         setInvitationModalVisible(false);
     };
 
-    // leave function
     const handleOpenLeaveFamily = () => {
         setLeaveFamilyModalVisible(true);
     }
@@ -66,7 +65,6 @@ export default function FamilyHome() {
     const handleCloseLeaveFamily = () => {
         setLeaveFamilyModalVisible(false);
     }
-
 
     if (meLoading) {
         return (
@@ -84,30 +82,26 @@ export default function FamilyHome() {
             >
                 {/* Header */}
                 <View style={styles.header}>
-                    <Text style={styles.eyebrow}>Ma famille</Text>
-                    <Text style={styles.title}>{me?.family?.name}</Text>
+                    <View style={styles.headerRow}>
+                        <View>
+                            <Text style={styles.eyebrow}>Ma famille</Text>
+                            <Text style={styles.title}>{me?.family?.name ?? 'Aucune'}</Text>
+                        </View>
+                        {me?.family && (
+                            <TouchableOpacity
+                                style={styles.shareButton}
+                                activeOpacity={0.8}
+                                onPress={handleOpenInvitation}
+                            >
+                                <FontAwesome name="share-alt" size={24} color={Colors.secondary} />
+                            </TouchableOpacity>
+                        )}
+                    </View>
                 </View>
 
                 {/* Empty state */}
                 {!me?.family && (
-                    <View style={styles.emptyState}>
-                        <View style={styles.emptyIconContainer}>
-                            <Text style={styles.emptyIcon}>🏠</Text>
-                        </View>
-                        <Text style={styles.emptyTitle}>Pas encore de famille</Text>
-                        <Text style={styles.emptySubtitle}>
-                            Crée ta famille ou rejoins celle d&#39;un proche
-                        </Text>
-
-                        <View style={styles.actionsColumn}>
-                            <TouchableOpacity style={styles.primaryButton} activeOpacity={0.85}>
-                                <Text style={styles.primaryButtonText}>Créer ma famille</Text>
-                            </TouchableOpacity>
-                            <TouchableOpacity style={styles.secondaryButton} activeOpacity={0.85}>
-                                <Text style={styles.secondaryButtonText}>Rejoindre une famille</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </View>
+                    <NoFamily/>
                 )}
 
                 {/* Family view */}
@@ -133,15 +127,8 @@ export default function FamilyHome() {
                             ))}
                         </View>
 
-                        {/* Invite button */}
-                        <TouchableOpacity style={styles.inviteButton} activeOpacity={0.85} onPress={handleOpenInvitation}>
-                            <Text style={styles.inviteIcon}>＋</Text>
-                            <Text style={styles.inviteButtonText}>Créer un code d&#39;invitation</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.inviteButton} activeOpacity={0.85} onPress={handleOpenLeaveFamily}>
-                            <Text style={styles.inviteButtonText}>Quitter la famille</Text>
-                        </TouchableOpacity>
+                        {/* Leave button */}
+                        <AlertButton text="Quitter la famille" onPress={handleOpenLeaveFamily} icon="suitcase-rolling" />
                     </View>
                 )}
             </ScrollView>
@@ -179,6 +166,11 @@ const styles = StyleSheet.create({
         paddingTop: 16,
         paddingBottom: 28,
     },
+    headerRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
     eyebrow: {
         fontFamily: Fonts.medium,
         fontSize: 13,
@@ -193,73 +185,15 @@ const styles = StyleSheet.create({
         color: Colors.dark_outline,
         letterSpacing: -0.5,
     },
-
-    // Empty state
-    emptyState: {
-        alignItems: "center",
-        paddingTop: 32,
-        paddingHorizontal: 8,
-    },
-    emptyIconContainer: {
-        width: 88,
-        height: 88,
-        borderRadius: 44,
+    shareButton: {
+        width: 44,
+        height: 44,
+        borderRadius: 22,
         backgroundColor: Colors.accent,
+        alignItems: "center",
         justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 20,
-    },
-    emptyIcon: {
-        fontSize: 36,
-    },
-    emptyTitle: {
-        fontFamily: Fonts.semiBold,
-        fontSize: 20,
-        color: Colors.dark_outline,
-        marginBottom: 8,
-        textAlign: "center",
-    },
-    emptySubtitle: {
-        fontFamily: Fonts.regular,
-        fontSize: 14,
-        color: Colors.primary_light,
-        textAlign: "center",
-        lineHeight: 20,
-        marginBottom: 36,
-        maxWidth: 260,
-    },
-    actionsColumn: {
-        width: "100%",
-        gap: 12,
-    },
-    primaryButton: {
-        backgroundColor: Colors.primary,
-        borderRadius: 14,
-        paddingVertical: 16,
-        alignItems: "center",
-        shadowColor: Colors.primary,
-        shadowOffset: { width: 0, height: 6 },
-        shadowOpacity: 0.3,
-        shadowRadius: 12,
-        elevation: 6,
-    },
-    primaryButtonText: {
-        fontFamily: Fonts.semiBold,
-        fontSize: 15,
-        color: Colors.light_outline,
-        letterSpacing: 0.2,
-    },
-    secondaryButton: {
-        backgroundColor: Colors.light_outline_gray,
-        borderRadius: 14,
-        paddingVertical: 16,
-        alignItems: "center",
-    },
-    secondaryButtonText: {
-        fontFamily: Fonts.semiBold,
-        fontSize: 15,
-        color: Colors.dark_outline,
-        letterSpacing: 0.2,
+        borderWidth: 1.5,
+        borderColor: Colors.secondary_light,
     },
 
     // Family
@@ -300,29 +234,5 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: Colors.primary_light,
         marginTop: 2,
-    },
-
-    // Invite
-    inviteButton: {
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 8,
-        borderWidth: 1.5,
-        borderColor: Colors.secondary_light,
-        borderRadius: 14,
-        borderStyle: "dashed",
-        paddingVertical: 16,
-        backgroundColor: Colors.accent,
-    },
-    inviteIcon: {
-        fontSize: 18,
-        color: Colors.secondary,
-        fontFamily: Fonts.medium,
-    },
-    inviteButtonText: {
-        fontFamily: Fonts.semiBold,
-        fontSize: 14,
-        color: Colors.secondary,
     },
 });
