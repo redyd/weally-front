@@ -34,7 +34,6 @@ export default function FamilyHome() {
     const [leaveFamilyModalVisible, setLeaveFamilyModalVisible] = useState(false);
     const { mutate: leaveFamily, isPending: isLeavePending, reset: resetLeave } = useLeaveFamily({
         onSuccess: () => {
-            console.log("Confirm leave family")
             setLeaveFamilyModalVisible(false)
             queryClient.invalidateQueries({ queryKey: ['me'] })
         },

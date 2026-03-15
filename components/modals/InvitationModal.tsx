@@ -12,7 +12,11 @@ interface InvitationModalProps {
 export default function InvitationModal(props: InvitationModalProps) {
     const handleShare = () => {
         if (!props.invitation?.code) return;
-        Share.share({ message: `Rejoins ma famille avec ce code : ${props.invitation.code}` });
+        const link = `weally://choose-family?action=join&code=${props.invitation.code}`
+        Share.share({
+            message: `Rejoins ma famille sur Weally !\n\n${link}`,
+            url: link,
+        })
     };
 
     return (
