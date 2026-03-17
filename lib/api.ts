@@ -23,9 +23,17 @@ export async function apiFetch<T>(path: string, options?: RequestInit): Promise<
     });
 
     if (!res.ok) {
-        const error = await res.json().catch(() => ({}));
-        throw new Error(error.message ?? `Erreur ${res.status}`);
+        const errorData = await res.json().catch(() => ({}));
+        throw new ApiError(errorData.message ?? `Erreur ${res.status}`, res.status);
     }
 
     return res.json();
+}
+
+export class ApiError extends Error {
+    status: number;
+    constructor(message: string, status: number) {
+        super(message);
+        this.status = status;
+    }
 }

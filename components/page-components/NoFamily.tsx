@@ -4,14 +4,15 @@ import PrimaryLargeButton from "@/components/buttons/PrimaryLargeButton";
 import SecondaryLargeButton from "@/components/buttons/SecondaryLargeButton";
 import {FontAwesome6} from "@expo/vector-icons";
 import {router} from "expo-router";
+import ActionColumns from "@/components/buttons/ActionColumns";
 
 export default function NoFamily() {
     const goToCreateFamily = () => {
-        router.push({pathname: "/(main)/family/choose-family", params: {action: 'create'}});
+        router.push({pathname: "/(main)/family/join", params: {action: 'create'}});
     }
 
     const goToJoinFamily = () => {
-        router.push({pathname: "/(main)/family/choose-family", params: {action: 'join'}});
+        router.push({pathname: "/(main)/family/join", params: {action: 'join'}});
     }
 
     return (
@@ -24,10 +25,10 @@ export default function NoFamily() {
                 Crée ta famille ou rejoins celle d&#39;un proche
             </Text>
 
-            <View style={styles.actionsColumn}>
+            <ActionColumns>
                 <PrimaryLargeButton text="Créer ma famille" onPress={goToCreateFamily}/>
                 <SecondaryLargeButton text="Rejoindre une famille" onPress={goToJoinFamily}/>
-            </View>
+            </ActionColumns>
         </View>
     )
 }
@@ -62,9 +63,5 @@ const styles = StyleSheet.create({
         lineHeight: 20,
         marginBottom: 36,
         maxWidth: 260,
-    },
-    actionsColumn: {
-        width: "100%",
-        gap: 12,
-    },
+    }
 })

@@ -6,9 +6,9 @@ import {
     TouchableOpacity,
     ScrollView,
 } from "react-native";
-import { ResponsiveLayout } from "@/components/layouts/ResponsiveLayout";
-import { Colors, Fonts } from "@/constants/theme";
-import { useMe } from "@/hooks/useMe";
+import {ResponsiveLayout} from "@/components/layouts/ResponsiveLayout";
+import {Colors, Fonts} from "@/constants/theme";
+import {useMe} from "@/hooks/useMe";
 import Avatar from "@/components/icons/Avatar";
 import {useInvitationCode} from "@/hooks/useInvitationCode";
 import {useState} from "react";
@@ -19,23 +19,29 @@ import {useQueryClient} from "@tanstack/react-query";
 import {FontAwesome} from "@expo/vector-icons";
 import AlertButton from "@/components/buttons/AlertButton";
 import NoFamily from "@/components/page-components/NoFamily";
+import Eyebrow from "@/components/texts/eyebrow";
 
 export default function FamilyHome() {
     const queryClient = useQueryClient();
 
     // user & family data
-    const { data: me, isLoading: meLoading } = useMe();
+    const {data: me, isLoading: meLoading} = useMe();
 
     // invitation modal
     const [invitationModalVisible, setInvitationModalVisible] = useState(false);
-    const { mutate: createInvitation, data: invitation, isPending: isInvitationPending, reset: resetInvitation} = useInvitationCode();
+    const {
+        mutate: createInvitation,
+        data: invitation,
+        isPending: isInvitationPending,
+        reset: resetInvitation
+    } = useInvitationCode();
 
     // leave family modal
     const [leaveFamilyModalVisible, setLeaveFamilyModalVisible] = useState(false);
-    const { mutate: leaveFamily, isPending: isLeavePending, reset: resetLeave } = useLeaveFamily({
+    const {mutate: leaveFamily, isPending: isLeavePending, reset: resetLeave} = useLeaveFamily({
         onSuccess: () => {
             setLeaveFamilyModalVisible(false)
-            queryClient.invalidateQueries({ queryKey: ['me'] })
+            queryClient.invalidateQueries({queryKey: ['me']})
         },
         onError: (error) => {
             console.error("Leave family failed", error)
@@ -68,7 +74,7 @@ export default function FamilyHome() {
     if (meLoading) {
         return (
             <View style={styles.loaderContainer}>
-                <ActivityIndicator size="large" color={Colors.primary} />
+                <ActivityIndicator size="large" color={Colors.primary}/>
             </View>
         );
     }
@@ -82,17 +88,16 @@ export default function FamilyHome() {
                 {/* Header */}
                 <View style={styles.header}>
                     <View style={styles.headerRow}>
-                        <View>
-                            <Text style={styles.eyebrow}>Ma famille</Text>
-                            <Text style={styles.title}>{me?.family?.name ?? 'Aucune'}</Text>
-                        </View>
+                        <Eyebrow
+                            title={me?.family?.name ?? 'Aucune'}
+                            eyebrow="Ma famille"/>
                         {me?.family && (
                             <TouchableOpacity
                                 style={styles.shareButton}
                                 activeOpacity={0.8}
                                 onPress={handleOpenInvitation}
                             >
-                                <FontAwesome name="share-alt" size={24} color={Colors.secondary} />
+                                <FontAwesome name="share-alt" size={24} color={Colors.secondary}/>
                             </TouchableOpacity>
                         )}
                     </View>
@@ -115,7 +120,7 @@ export default function FamilyHome() {
                         <View style={styles.membersList}>
                             {me.family.familyMembers.map((member, index) => (
                                 <View key={index} style={styles.memberRow}>
-                                    <Avatar size={48} image={member.image} name={member.name} />
+                                    <Avatar size={48} image={member.image} name={member.name}/>
                                     <View style={styles.memberInfo}>
                                         <Text style={styles.memberName}>{member.name}</Text>
                                         <Text style={styles.memberRole}>
@@ -127,7 +132,7 @@ export default function FamilyHome() {
                         </View>
 
                         {/* Leave button */}
-                        <AlertButton text="Quitter la famille" onPress={handleOpenLeaveFamily} icon="suitcase-rolling" />
+                        <AlertButton text="Quitter la famille" onPress={handleOpenLeaveFamily} icon="suitcase-rolling"/>
                     </View>
                 )}
             </ScrollView>
@@ -136,7 +141,7 @@ export default function FamilyHome() {
                 invitation={invitation}
                 isPending={isInvitationPending}
                 handleClose={handleCloseInvitation}
-                visible={invitationModalVisible} />
+                visible={invitationModalVisible}/>
 
             <ConfirmationModal
                 visible={leaveFamilyModalVisible}
@@ -169,20 +174,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-    },
-    eyebrow: {
-        fontFamily: Fonts.medium,
-        fontSize: 13,
-        color: Colors.secondary,
-        letterSpacing: 1.5,
-        textTransform: "uppercase",
-        marginBottom: 4,
-    },
-    title: {
-        fontFamily: Fonts.bold,
-        fontSize: 32,
-        color: Colors.dark_outline,
-        letterSpacing: -0.5,
     },
     shareButton: {
         width: 44,

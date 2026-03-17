@@ -9,12 +9,16 @@ import Avatar from "@/components/icons/Avatar";
 import GlobalSearchBar from "@/components/page-components/GlobalSearchBar";
 import {useNextDaysPlanning} from "@/hooks/useNextDaysPlanning";
 import DailyMealPreview from "@/components/page-components/DailyMealPreview";
+import NoFamily from "@/components/page-components/NoFamily";
 
 const DAYS_PREVIEW: number = 5;
 
 export default function Index() {
     const {data: me, isLoading: meLoading} = useMe();
-    const {data: planningPreview, isLoading: planningPreviewLoading} = useNextDaysPlanning(me?.family?.id, DAYS_PREVIEW);
+    const {
+        data: planningPreview,
+        isLoading: planningPreviewLoading
+    } = useNextDaysPlanning(me?.family?.id, DAYS_PREVIEW);
 
     if (meLoading || planningPreviewLoading) {
         return <ActivityIndicator size="large" color={Colors.dark_outline}/>;
@@ -38,7 +42,13 @@ export default function Index() {
                     <GlobalSearchBar/>
                 </View>
 
-                <DailyMealPreview planning={planningPreview} days={DAYS_PREVIEW}/>
+                {me?.family && (
+                    <DailyMealPreview planning={planningPreview} days={DAYS_PREVIEW}/>
+                )}
+
+                {!me?.family && (
+                    <NoFamily/>
+                )}
             </SafeAreaView>
         </ResponsiveLayout>
     );
@@ -47,7 +57,7 @@ export default function Index() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        gap:10
+        gap: 10
     },
     header: {
         display: "flex",
