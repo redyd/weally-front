@@ -16,7 +16,7 @@ export default function Account() {
     }
 
     const goToFamily = function () {
-        router.push("/(main)/(family)");
+        router.push("/(main)/family");
     }
 
     if (isPending) return null;

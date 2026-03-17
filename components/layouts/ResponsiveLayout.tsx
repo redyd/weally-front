@@ -24,15 +24,15 @@ export function ResponsiveLayout({children}: { children: React.ReactNode }) {
             <View style={styles.sidebar}>
                 <View>
                     <SidebarItem label="Home" route="/">
-                        <Ionicons name="home-sharp" size={15} color="#000"/>
+                        <Ionicons name="home-sharp" size={15} color={Colors.dark_outline}/>
                     </SidebarItem>
                     <SidebarItem label="Planning" route="/planning">
-                        <Ionicons name="calendar-clear" size={15} color="#000"/>
+                        <Ionicons name="calendar-clear" size={15} color={Colors.dark_outline}/>
                     </SidebarItem>
                 </View>
                 <View style={styles.bottomItem}>
                     <SidebarItem label="Mon compte" route="/account">
-                        <Ionicons name="person" size={15} color="#000"/>
+                        <Ionicons name="person" size={15} color={Colors.dark_outline}/>
                     </SidebarItem>
                 </View>
             </View>
@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: 20
+        padding: 20,
     },
     item: {
         padding: 12,
@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
         gap: 15
     },
     itemHover: {
-        backgroundColor: Colors.secondary_light
+        backgroundColor: Colors.primary_extra_light
     },
     itemActive: {
-        backgroundColor: Colors.secondary
+        backgroundColor: Colors.primary_light
     },
     itemText: {
         color: Colors.dark_outline,

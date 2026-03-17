@@ -75,6 +75,7 @@ const styles = StyleSheet.create({
         padding: 28,
         width: '100%',
         gap: 16,
+        maxWidth: 400
     },
     modalTitle: {
         fontFamily: Fonts.bold,
@@ -122,5 +123,5 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.semiBold,
         fontSize: 15,
         color: Colors.dark_outline,
-    },
+    }
 });

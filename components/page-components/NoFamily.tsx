@@ -7,11 +7,11 @@ import {router} from "expo-router";
 
 export default function NoFamily() {
     const goToCreateFamily = () => {
-        router.push({pathname: "/(main)/(family)/choose-family", params: {action: 'create'}});
+        router.push({pathname: "/(main)/family/choose-family", params: {action: 'create'}});
     }
 
     const goToJoinFamily = () => {
-        router.push({pathname: "/(main)/(family)/choose-family", params: {action: 'join'}});
+        router.push({pathname: "/(main)/family/choose-family", params: {action: 'join'}});
     }
 
     return (

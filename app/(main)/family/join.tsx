@@ -1,5 +1,5 @@
-import {View, TextInput, Text, ActivityIndicator} from "react-native";
-import {useLocalSearchParams} from "expo-router";
+import {View, TextInput, Text, ActivityIndicator, StyleSheet} from "react-native";
+import {router, useLocalSearchParams} from "expo-router";
 import {useEffect, useState} from "react";
 import {useMe} from "@/hooks/useMe";
 import PrimaryLargeButton from "@/components/buttons/PrimaryLargeButton";
@@ -8,7 +8,7 @@ import ConfirmationModal from "@/components/modals/ConfirmationModal";
 import {useLeaveFamily} from "@/hooks/useLeaveFamily";
 import {useQueryClient} from "@tanstack/react-query";
 
-export default function ChooseFamily() {
+export default function Join() {
     const {data: me, isLoading: meLoading} = useMe();
     const queryClient = useQueryClient();
 
@@ -39,6 +39,10 @@ export default function ChooseFamily() {
         setLeaveFamilyModalVisible(false);
     }
 
+    const handleCancelOperation = () => {
+        router.push("/(main)/family");
+    }
+
     useEffect(() => {
         if (code) setInviteCode(code)
     }, [code])
@@ -50,10 +54,10 @@ export default function ChooseFamily() {
 
     if (me?.family) {
         return (
-            <View>
+            <View style={styles.container}>
                 <Text>Vous appartenez déjà à une famille. Quittez la pour rejoindre cette famille</Text>
                 <PrimaryLargeButton text="Quitter ma famille" onPress={handleOpenLeaveFamily} />
-                <SecondaryLargeButton text="Revenir en lieu sûr"/>
+                <SecondaryLargeButton text="Revenir en lieu sûr" onPress={handleCancelOperation}/>
                 <ConfirmationModal
                     visible={leaveFamilyModalVisible}
                     title="Quitter ma famille"
@@ -66,7 +70,7 @@ export default function ChooseFamily() {
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={styles.container}>
             {action === 'join' && (
                 <TextInput
                     value={inviteCode}
@@ -79,3 +83,8 @@ export default function ChooseFamily() {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    container: {
+    }
+})
