@@ -3,35 +3,22 @@ import {router, useLocalSearchParams} from "expo-router";
 import {useEffect, useState} from "react";
 import {useMe} from "@/hooks/useMe";
 import PrimaryLargeButton from "@/components/buttons/PrimaryLargeButton";
-import SecondaryLargeButton from "@/components/buttons/SecondaryLargeButton";
-import ConfirmationModal from "@/components/modals/ConfirmationModal";
-import {useLeaveFamily} from "@/hooks/useLeaveFamily";
 import {useQueryClient} from "@tanstack/react-query";
 import {ResponsiveLayout} from "@/components/layouts/ResponsiveLayout";
 import Eyebrow from "@/components/texts/eyebrow";
 import {Colors, Fonts} from "@/constants/theme";
 import {useJoinFamily} from "@/hooks/useJoinFamily";
 import {ApiError} from "@/lib/api";
-import ActionColumns from "@/components/buttons/ActionColumns";
+import JoinFamilyWarn from "@/components/page-components/JoinFamilyWarn";
 
 export default function Join() {
     const {data: me, isLoading: meLoading} = useMe();
     const queryClient = useQueryClient();
 
-    const {action, code} = useLocalSearchParams<{ action: 'create' | 'join', code?: string }>();
+    const {action: rawAction, code} = useLocalSearchParams<{ action?: 'create' | 'join', code?: string }>();
+    const action = rawAction ?? "join";
     const [inviteCode, setInviteCode] = useState(code ?? '');
     const [error, setError] = useState<string>("");
-
-    const [leaveFamilyModalVisible, setLeaveFamilyModalVisible] = useState(false);
-    const {mutate: leaveFamily, isPending: isLeavePending, reset: resetLeave} = useLeaveFamily({
-        onSuccess: () => {
-            setLeaveFamilyModalVisible(false)
-            queryClient.invalidateQueries({queryKey: ['me']})
-        },
-        onError: (error) => {
-            console.error("Leave family failed", error)
-        }
-    });
 
     const {mutate: joinFamily} = useJoinFamily({
         onSuccess: async () => {
@@ -56,23 +43,6 @@ export default function Join() {
         }
     })
 
-    const handleOpenLeaveFamily = () => {
-        setLeaveFamilyModalVisible(true);
-    }
-
-    const handleConfirmLeaveFamily = () => {
-        resetLeave();
-        leaveFamily();
-    }
-
-    const handleCloseLeaveFamily = () => {
-        setLeaveFamilyModalVisible(false);
-    }
-
-    const handleCancelOperation = () => {
-        router.replace("/(main)/(tabs)");
-    }
-
     const handleOnJoin = async () => {
         if (!inviteCode) {
             return;
@@ -92,23 +62,8 @@ export default function Join() {
 
     if (me?.family) {
         return (
-            <ResponsiveLayout>
-                <View style={styles.spacer}>
-                    <Text style={styles.warnText}>Vous appartenez déjà à une famille. Quittez la pour rejoindre cette famille</Text>
-                    <ActionColumns>
-                        <PrimaryLargeButton text="Quitter ma famille" onPress={handleOpenLeaveFamily}/>
-                        <SecondaryLargeButton text="Revenir en lieu sûr" onPress={handleCancelOperation}/>
-                    </ActionColumns>
-                    <ConfirmationModal
-                        visible={leaveFamilyModalVisible}
-                        title="Quitter ma famille"
-                        message="Êtes vous sûr de vouloir quitter votre famille ?"
-                        onConfirm={handleConfirmLeaveFamily}
-                        onCancel={handleCloseLeaveFamily}
-                        isPending={isLeavePending}/>
-                </View>
-            </ResponsiveLayout>
-        );
+            <JoinFamilyWarn />
+        )
     }
 
     return (
